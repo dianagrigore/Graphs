@@ -8,19 +8,17 @@
 Graf :: Graf(int nr_noduri) : nr_noduri {nr_noduri}{
 }
 
-Graf :: ~Graf(){
-    nr_noduri = 0;
+Graf :: ~Graf() = default;
+
+std :: istream& operator >>(std :: istream& in, Graf &src){
+    src.citeste(in);
+    return in;
 }
 
-Graf :: Graf(const Graf &graf){
-    nr_noduri = graf.nr_noduri;
+void  Graf :: afisare_rezultat(int nod_start){
+    std :: cout << nr_noduri << '\n' << nod_start;
 }
 
-void swap(Graf &first, Graf &second) {
-    using std :: swap;
-    swap(first.nr_noduri, second.nr_noduri);
-}
-
-void Graf :: f(int ns){
-    std :: cout << ns << '\n';
+void Graf :: citeste(std::istream &in) {
+    in >> nr_noduri;
 }

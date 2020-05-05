@@ -4,45 +4,41 @@
 
 #include "Lista.h"
 #include "Vector.h"
-#include <iostream>
 Lista :: Lista(int dimensiune) : dimensiune{dimensiune}{
-    l = new Vector [dimensiune];
-    Vector val(1,1);
-    for (int i = 0; i < dimensiune; i++)
-        l[i] = val;
+    lista = new Vector [dimensiune];
 }
 
 std :: istream& operator >>(std :: istream& in, Lista &lis){
-    delete []lis.l;
+    delete []lis.lista;
     in >> lis.dimensiune;
-    lis.l = new Vector[lis.dimensiune];
+    lis.lista = new Vector[lis.dimensiune];
     for (int i = 0; i < lis.dimensiune; i++)
-        in >> lis.l[i];
+        in >> lis.lista[i];
     return in;
 }
 
 std :: ostream& operator <<(std :: ostream& out, const Lista& lis){
     for (int i = 0; i < lis.dimensiune; i++)
-        out << lis.l[i] <<'\n';
+        out << lis.lista[i] << '\n';
     return out;
 }
 
 Lista :: ~Lista(){
     dimensiune = 0;
-    delete [] l;
+    delete [] lista;
 }
 
 void swap(Lista &first, Lista &second){
     using std :: swap;
     swap(first.dimensiune, second.dimensiune);
-    swap(first.l, second.l);
+    swap(first.lista, second.lista);
 }
 
 Lista :: Lista(const Lista& lis){
     dimensiune = lis.dimensiune;
-    l = new Vector [dimensiune];
-    for (int i = 0; i<dimensiune; i++)
-        l[i] = lis.l[i];
+    lista = new Vector [dimensiune];
+    for (int i = 0; i < dimensiune; i++)
+        lista[i] = lis.lista[i];
 }
 
 Lista &Lista :: operator =(Lista src){
@@ -55,6 +51,6 @@ int Lista :: getdimensiune() const {
     return dimensiune;
 }
 
-Vector* Lista :: getvector() const {
-    return l;
+Vector& Lista :: operator [] (int index){
+    return lista[index];
 }

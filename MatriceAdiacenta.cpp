@@ -3,7 +3,8 @@
 //
 
 #include "MatriceAdiacenta.h"
-#include <iostream>
+
+
 MatriceAdiacenta :: MatriceAdiacenta(int m, int n, int val) : m{m}, n{n} {
     matrice = new int* [m];
     for (int i = 0; i < m; i++)
@@ -19,7 +20,6 @@ MatriceAdiacenta ::~MatriceAdiacenta() {
     delete [] matrice;
     m = 0;
     n = 0;
-
 }
 
 MatriceAdiacenta ::MatriceAdiacenta(const MatriceAdiacenta &matrix) {
@@ -47,7 +47,7 @@ std :: istream &operator >>(std :: istream &in, MatriceAdiacenta &matrix){
     delete [] matrix.matrice;
     in >> matrix.m >> matrix.n;
     matrix.matrice = new int* [matrix.m];
-    for (int i = 0; i < matrix.n; i++)
+    for (int i = 0; i < matrix.m; i++)
         matrix.matrice[i] = new int [matrix.n];
     for (int i = 0; i < matrix.m; i++)
         for (int j = 0; j < matrix.n; j++)
@@ -79,6 +79,26 @@ int MatriceAdiacenta :: getcolumns() const {
     return n;
 }
 
-int ** MatriceAdiacenta :: getmatrix() const {
-    return matrice;
+int * MatriceAdiacenta :: parcurgere_latime(int nod_start) {
+    int* viz = new int [n];
+    for (int i = 0; i < n; i++)
+        viz[i] = 0;
+    viz[nod_start - 1] = 1;
+    int prim = 1;
+    int ultim = 1;
+    int *parcurgere = new int [n + 2];
+    parcurgere[ultim] = nod_start - 1;
+    while (prim <= ultim) {
+        for(int i = 0; i < n; i++)
+            if(matrice[parcurgere[prim]][i] == 1 && viz[i] == 0)
+            {
+                ultim++;
+                parcurgere[ultim] = i;
+                viz[i] = 1;
+            }
+        prim++;
+    }
+    delete [] parcurgere;
+    return viz;
+
 }

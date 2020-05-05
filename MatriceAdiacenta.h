@@ -27,11 +27,12 @@ public:
 
     MatriceAdiacenta& operator =(MatriceAdiacenta matrix);
 
+    int* parcurgere_latime(int ns);
+
     int getrows() const;
 
     int getcolumns() const;
 
-    int** getmatrix() const;
 };
 
 

@@ -28,7 +28,7 @@ public:
 
     int getdimensiune() const;
 
-    int* getelemente() const;
+    int& operator[](int index);
 };
 
 

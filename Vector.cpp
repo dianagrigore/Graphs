@@ -53,6 +53,6 @@ int Vector :: getdimensiune() const {
     return dim;
 }
 
-int* Vector :: getelemente() const {
-    return v;
+int& Vector :: operator[](int index) {
+    return v[index];
 }

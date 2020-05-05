@@ -8,7 +8,7 @@
 
 class Lista {
 private:
-    Vector *l;
+    Vector *lista;
     int dimensiune;
 public:
     explicit Lista(int dimensiune=1);
@@ -27,7 +27,7 @@ public:
 
     int getdimensiune() const;
 
-    Vector* getvector() const;
+    Vector& operator[](int index);
 };
 
 

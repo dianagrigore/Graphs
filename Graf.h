@@ -11,15 +11,19 @@ class Graf {
 protected:
     int nr_noduri;
 public:
-    explicit Graf(int nr_noduri=1);
+    explicit Graf(int nr_noduri);
 
-    virtual ~Graf();
+    virtual ~Graf() = 0;
 
-    virtual void f(int ns)=0;
+    Graf(const Graf& graf) = default;
 
-    Graf(const Graf& graf);
+    Graf& operator= (Graf const &src) = default;
 
-    friend void swap(Graf &first, Graf &second);
+    virtual void citeste(std :: istream &in);
+
+    friend std::istream& operator >>(std::istream &in, Graf &src);
+
+    virtual void afisare_rezultat(int nod_start) = 0;
 
 };
 

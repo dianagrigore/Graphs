@@ -10,13 +10,13 @@
 class Graf_Orientat : public Graf {
     MatriceAdiacenta A;
 public:
-    explicit Graf_Orientat(int nr=1, MatriceAdiacenta matrice = MatriceAdiacenta() );
+    explicit Graf_Orientat(int nr = 1, MatriceAdiacenta matrice = MatriceAdiacenta());
 
     ~Graf_Orientat() override = default;
 
     friend std::ostream& operator <<(std::ostream &out, const Graf_Orientat &src);
 
-    friend std::istream& operator >>(std::istream &in, Graf_Orientat &src);
+    virtual void citeste(std :: istream &in) override;
 
     friend void swap(Graf_Orientat &first, Graf_Orientat &second);
 
@@ -24,7 +24,7 @@ public:
 
     Graf_Orientat& operator =(Graf_Orientat src);
 
-    void f(int ns) override ;
+    void afisare_rezultat(int nod_start) override;
 
     int isgraf();
 };

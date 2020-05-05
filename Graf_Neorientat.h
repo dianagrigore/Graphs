@@ -17,7 +17,7 @@ public:
 
     friend std::ostream& operator <<(std::ostream &out, const Graf_Neorientat &src);
 
-    friend std::istream& operator >>(std::istream &in, Graf_Neorientat &src);
+    virtual void citeste (std :: istream &in) override;
 
     friend void swap(Graf_Neorientat &first, Graf_Neorientat &second);
 
@@ -25,7 +25,7 @@ public:
 
     Graf_Neorientat& operator =(Graf_Neorientat src);
 
-    void f(int ns) override;
+    void afisare_rezultat(int nod_start) override;
 };
 
 
